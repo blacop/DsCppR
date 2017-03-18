@@ -7,8 +7,7 @@ class SqList {
 #pragma region Member field 成员字段
 private:
 	T * data; //表元素数组， T * 泛型指针 //另一种写法 T[] data。
-	int last; //工作指针
-			  //int n; //现存元素个数
+	int last; //工作指针 //int n; //现存元素个数			  
 	int MaxSize; //最大元素个数	
 #pragma endregion !_Member field 成员字段
 
@@ -24,7 +23,7 @@ public:
 };
 
 template <class T>
-SqList<T>::SqList(int Max) { 
+SqList<T>::SqList(int Max) {
 	//构造函数
 	//模板类，界定符必须要写SqList<T>::
 	MaxSize = Max;
@@ -34,14 +33,46 @@ SqList<T>::SqList(int Max) {
 
 template<class T>
 int SqList<T>::Locate(const T& x) const {
+	//查找表中元素x的位置，return index
 	//返回表中元素x的位置
 	//const成员函数不能修改调用该函数的对象
 	int i = 0; //临时指针
-	while (i <= last && data[i] != x)
-		i++; //顺序查找，临时指针 i++
-	if (i > last)
-		return -1; //查找失败
-	else
-		return i; //查找成功
+	while (i <= last && data[i] != x)  //顺序查找，临时指针 i++
+		i++;
+	if (i > last)   //查找失败
+		return -1; 
+	else			//查找成功
+		return i; 
+}
+
+template<class T>
+bool SqList<T>::Insert(int k, const T & x) {
+	//插入元素
+	//int k,order pos
+	//const T & x , data
+	//return bool;
+	//下标非法，k=last + 1表示尾插。 last == MaxSize - 1 表示满了
+	if ((k<0 || k>last + 1) || last == MaxSize - 1) 
+		return 0;
+	else { //下标合法
+		last++; //工作指针+1
+		for (int j = last; j > k; j--) {
+			data[j] - data[j - 1];
+			data[k] = x;
+			return 1;
+		}
+	}
+}
+
+template<class T>
+bool SqList<T>::Delete(int k, T & x) {
+	//从表中删除位置k 处的元素 x,return bool
+	if (k<0 || k>last) //index illegal
+		return 0;
+	last--;
+	for (int j = k; j <= last; j++) {
+		data[j] = data[j + 1];
+		return 1;
+	}
 }
 
