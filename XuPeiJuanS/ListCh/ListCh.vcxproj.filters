@@ -45,7 +45,13 @@
     <ClInclude Include="DNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="StackNode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="Stack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SqStack.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

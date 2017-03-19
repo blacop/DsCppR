@@ -152,7 +152,9 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="Property.h" />
     <ClInclude Include="SqList.h" />
+    <ClInclude Include="SqStack.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="StackNode.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

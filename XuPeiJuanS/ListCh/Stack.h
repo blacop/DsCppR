@@ -8,86 +8,84 @@
 //#pragma endregion !_Member Function Definition
 #pragma once
 #include "stdafx.h"
+#include "StackNode.h"
+#include "Node.h"
 
-const int MaxStackSize = 50;
-
-//SqStack
+//LinkStack
 template <class T>
 class Stack {
 private:
-	T StackList[MaxStackSize]; //data domain Array
-	int top; //cur ptr
+	StackNode<T>* top; //cur ptr
 public:
-	Stack(void);
-	virtual ~Stack() {}
+	//Construct Function()
+	template<class T>
+	inline Stack<T>::Stack(void)
+		:top(NULL) {}
+	//DeConstruct Function()
+	template<class T>
+	virtual inline Stack<T>:: ~Stack() {
+		StackNode<T>* p; //temp ref domain		 
+		while (top != NULL) { //free()
+			p = top;
+			top = top->next;
+			delete p;
+		}
+	}//!_DeConstruct Function()
 
 	void Push(const T &item);
-	T Pop(void);
-	void ClearStack(void);
-	T Peek(void) const;
-	int StackEmpty(void) const;
-	int StackFull(void) const;
+	T Pop();
+	T GetTop(void) const;
+	void MakeEmpty(void);
+	int IsEmpty(void) const;	
 
-};//!_class Stack
-
-//Construct Function()
-template<class T>
-inline Stack<T>::Stack(void)
-	:top(-1) {}
+};//!_class //!_LinkStack
 
 //Push() 从栈顶压入一个元素
 template<class T>
 inline void Stack<T>::Push(const T & item) {
-	//full stack
-	if (top == MaxStackSize - 1) {
-		cerr << "Stack overflow !" << endl;
-		exit(1);
-	}
-	top++; //cur ptr ++
-	StackList[top] = item; //赋值
-}
+	StackNode<T>* p = new Node<T>;
+	p->data = item; //赋值
+	p->next = top; //connect cur ptr
+	top = p; //cur ptr move ++
+}//!_Push() 从栈顶压入一个元素
 
 //Pop() 从栈顶弹出一个元素
 template<class T>
-inline T Stack<T>::Pop(void) {
-	T temp; //temp data  domain	
-	if (top = -1) { //empty stack
+inline T Stack<T>::Pop() {
+	if (IsEmpty()) { //empty stack
 		cerr << "Attempt to pop an empty stack!" << endl;
 		exit(1);
 	}
-	temp = StackList[top];
-	top--;
-	return temp;
+	StackNode<T>* p = top; //temp ref domain	
+	T RetValue = p->data; //temp data domain
+	top = top->next; //top-- move
+	delete p; //free() p, else will crash memory
+	return RetValue;
 }//!_Pop()
 
-//ClearStack()
+//MakeEmpty()
 template<class T>
-inline void Stack<T>::ClearStack(void) {
+inline void Stack<T>::MakeEmpty(void) {
 	this.top = -1;
-}//!_ClearStack()
+}//!_MakeEmpty()
 
-
-//peek()
+//peek(),GetTop()
 template<class T>
-inline T Stack<T>::Peek(void) const {
-	if (top = -1) { //empty stack
+inline T Stack<T>::GetTop(void) const {
+	if (IsEmpty()) { //empty stack
 		cerr << "Attempt to pop an empty stack!" << endl;
 		exit(1);
 	}
-	return StackList[top];
-}//!_peek()
+	return top->data;
+}//!_peek(),GetTop()
 
-//StackEmpty()
+//IsEmpty()
 template<class T>
-inline int Stack<T>::StackEmpty(void) const {
-	return top == -1;
-}//!_StackEmpty()
+inline int Stack<T>::IsEmpty(void) const {
+	return top == NULL;
+}//!_IsEmpty()
 
-//StackFull()
-template<class T>
-inline int Stack<T>::StackFull(void) const {
-	return top == MaxStackSize - 1;
-}//!_StackFull()
+
 
 
 
