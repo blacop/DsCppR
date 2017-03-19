@@ -18,110 +18,77 @@ private:
 	T QList[MaxQSize];
 	//rear => last+1 , 尾指针指向last+1
 	int front, rear, count;
+	//8个 方法
 public:
-	//构造函数
-	SqQueue(void);
+	//构造函数 //Constructor
+	SqQueue(void) :front(0), rear(0), count(0) {}
 	//析构造函数
 	virtual ~SqQueue() {}
-	//向队尾插入元素
-	void QInsert(const T & item);
-	//删除队首元素
-	T QDelete(void);
-	void ClearQueue(void);
-	//读取队首元素
-	T QFront(void) const;
-	//返回队列中元素个数
-	int QLength(void) const;
-	//检测队列是否为空
-	int QEmpty(void) const;
-	//检测队列是否为满
-	int QFull(void) const;
-
+	//向队尾插入元素 //Insert()
+	void QInsert(const T & item) {
+		if (count == MaxQSize) {
+			cerr << "Queue overflow !" << endl;
+			exit(1);
+		}
+		count++;
+		QList[rear] = item;
+		rear = (rear + 1) % MaxQSize;
+	}//!_Insert()
+	//删除队首元素 //Delete()
+	T QDelete(void) {
+		if (count == 0) {
+			cerr << "Deleting from an empty queue !" << endl;
+			exit(1);
+		}
+		T temp;
+		temp = QList[front];
+		count--;
+		front = (front + 1) % MaxQSize;
+		return temp;
+	}
+	//ClearQueue()
+	void ClearQueue(void) {
+		rear = front;
+		count = 0;
+	}
+	//读取队首元素 //QFront()
+	T QFront(void) const {
+		return QList[front];
+	}
+	//返回队列中元素个数 //QLength()
+	int QLength(void) const {
+		QueueNode<T> * tempptr = this.front;
+		int count = 0;
+		if (IsEmpty()) {
+			return 0;
+		}
+		//按顺序找到最后一个结点
+		while (tempptr != NULL) {
+			tempptr = tempptr->next;
+			count++;
+		}
+		return count + 1;
+	}//!_QLength()
+	//检测队列是否为空 //Destroy() Clear
+	void QClear(void) const {
+		//temp ref domain
+		QueueNode<T> * p;
+		//从头部开始删除
+		while (front != NULL) {
+			p = front;
+			front = front->next;
+			delete p;
+		}
+	}//!_Destroy() Clear
+	//IsEmpty()
+	int IsEmpty(void) const {
+		return count == 0;
+	}//!_IsEmpty()
+	//检测队列是否为满 //IsFull()
+	int IsFull(void) const {
+		return return count == MaxQSize;
+	}//!_IsFull()
 };//!_class Queue
 
-  //Constructor
-template <typename T>
-inline SqQueue<T>::SqQueue(void)
-	:front(0), rear(0), count(0) {}
-
-//Insert()
-template <typename T>
-inline void Queue<T>::QInsert(const T & item) {
-	if (count == MaxQSize) {
-		cerr << "Queue overflow !" << endl;
-		exit(1);
-	}
-	count++;
-	QList[rear] = item;
-	rear = (rear + 1) % MaxQSize;
-}//!_Insert()
-
- //Delete()
-template <typename T>
-inline T Queue<T>::QDelete(void) {
-	if (count == 0) {
-		cerr << "Deleting from an empty queue !" << endl;
-		exit(1);
-	}
-	T temp;
-	temp = QList[front];
-	count--;
-	front = (front + 1) % MaxQSize;
-	return temp;
-}
-
-//ClearQueue()
-template <typename T>
-inline void Queue<T>::ClearQueue(void) {
-	rear = front;
-	count = 0;
-}
-
-//QFront(),读取队首元素
-template <typename T>
-inline T Queue<T>::QFront(void) const {
-	return QList[front];
-}
-
-//QLength()
-template <typename T>
-inline int Queue<T>::QLength(void) const {
-	QueueNode<T> * tempptr = this.front;
-	int count=0;
-	if (IsEmpty()) {
-		return 0;
-	}
-	//按顺序找到最后一个结点
-	while (tempptr!=NULL) {
-		tempptr = tempptr->next;
-		count++;
-	}		
-	return count+1;
-}
-
-//Destroy()
-template <typename T>
-inline void Queue<T>::QClear(void) {
-	//temp ref domain
-	QueueNode<T> * p;
-	//从头部开始删除
-	while (front != NULL) {
-		p = front;
-		front = front->next;
-		delete p;
-	}
-}
-
-//QEmpty()
-template <typename T>
-inline int Queue<T>::QEmpty(void) const {
-	return count == 0;
-}
-
-//QFull()
-template <typename T>
-inline int Queue<T>::QFull(void) const {
-	return return count == MaxQSize;
-}
 
 
