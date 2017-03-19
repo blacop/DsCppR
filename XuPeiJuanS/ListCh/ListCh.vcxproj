@@ -152,6 +152,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="Property.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="QueueNode.h" />
     <ClInclude Include="SqList.h" />
     <ClInclude Include="SqQueue.h" />
     <ClInclude Include="SqStack.h" />

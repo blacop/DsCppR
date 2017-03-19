@@ -25,4 +25,4 @@ public:
 		:data(d), next(n) {}
 	//DeConstruct Function()
 	virtual ~QueueNode() {}
-};
+};//!_class QueueNode

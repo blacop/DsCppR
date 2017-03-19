@@ -7,40 +7,39 @@
 //#pragma region Member Function Definition
 //#pragma endregion !_Member Function Definition
 #include "stdafx.h"
+#include "QueueNode.h"
+#include "Node.h"
 #pragma once
 const int MaxQSize = 50;
 //链式队列的类定义
 template <class T>
 class Queue {
 private:
-	T QList[MaxQSize];//存放队列元素的数组
-	//rear => last+1 , 尾指针指向last+1
-	int front, rear, count;
+	//ref domain
+	QueueNode<T> *front, *rear;
 public:
+	//8个方法
 	//构造函数
-	Queue(void);
+	Queue() :rear(NULL), front(NULL) {}
 	//析构造函数
-	virtual ~Queue() {}
+	virtual ~Queue();
 	//向队尾插入元素
 	void QInsert(const T & item);
 	//删除队首元素
 	T QDelete(void);
-	void ClearQueue(void);
+
 	//读取队首元素
 	T QFront(void) const;
 	//返回队列中元素个数
 	int QLength(void) const;
 	//检测队列是否为空
-	int QEmpty(void) const;
-	//检测队列是否为满
-	int QFull(void) const;
+	int QEmpty(void) const {
+		return front == NULL;
+	}
+	//清空队列
+	void QClear(void);
 
 };//!_class Queue
-
-//Constructor
-template<class T>
-inline Queue<T>::Queue(void)
-	:front(0), rear(0), count(0) {}
 
 //Insert()
 template<class T>
@@ -87,16 +86,19 @@ inline int Queue<T>::QLength(void) const {
 	return count;
 }
 
-//QEmpty()
-template<class T>
-inline int Queue<T>::QEmpty(void) const {
-	return count == 0;
-}
-
 //QFull()
 template<class T>
 inline int Queue<T>::QFull(void) const {
 	return return count == MaxQSize;
 }
 
-
+//DeConstructor()
+template<class T>
+inline Queue<T>::~Queue() {
+	QueueNode<T> * p;
+	while (front != NULL) {
+		p = front;
+		front = front->next;
+		delete p;
+	}
+}
