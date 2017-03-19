@@ -145,12 +145,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AutoProperty.h" />
+    <ClInclude Include="Calculator.h" />
     <ClInclude Include="CNode.h" />
     <ClInclude Include="DNode.h" />
     <ClInclude Include="LinkList.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="Property.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueNode.h" />
     <ClInclude Include="SqList.h" />

@@ -33,12 +33,6 @@
     <ClInclude Include="LinkList.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Property.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="AutoProperty.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="CNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -61,6 +55,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="QueueNode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Calculator.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

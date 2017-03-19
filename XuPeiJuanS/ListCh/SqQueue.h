@@ -6,11 +6,12 @@
 //#pragma endregion !_Member Function Statement
 //#pragma region Member Function Definition
 //#pragma endregion !_Member Function Definition
-#include "stdafx.h"
 #pragma once
+#include "stdafx.h"
+#include "Queue.h"
 const int MaxQSize = 50;
 //顺序队列的类定义
-template <class T>
+template <typename T>
 class SqQueue {
 private:
 	//存放队列元素的数组
@@ -39,12 +40,12 @@ public:
 };//!_class Queue
 
   //Constructor
-template<class T>
+template <typename T>
 inline SqQueue<T>::SqQueue(void)
 	:front(0), rear(0), count(0) {}
 
 //Insert()
-template<class T>
+template <typename T>
 inline void Queue<T>::QInsert(const T & item) {
 	if (count == MaxQSize) {
 		cerr << "Queue overflow !" << endl;
@@ -56,7 +57,7 @@ inline void Queue<T>::QInsert(const T & item) {
 }//!_Insert()
 
  //Delete()
-template<class T>
+template <typename T>
 inline T Queue<T>::QDelete(void) {
 	if (count == 0) {
 		cerr << "Deleting from an empty queue !" << endl;
@@ -70,32 +71,55 @@ inline T Queue<T>::QDelete(void) {
 }
 
 //ClearQueue()
-template<class T>
+template <typename T>
 inline void Queue<T>::ClearQueue(void) {
 	rear = front;
 	count = 0;
 }
 
 //QFront(),读取队首元素
-template<class T>
+template <typename T>
 inline T Queue<T>::QFront(void) const {
 	return QList[front];
 }
 
 //QLength()
-template<class T>
+template <typename T>
 inline int Queue<T>::QLength(void) const {
-	return count;
+	QueueNode<T> * tempptr = this.front;
+	int count=0;
+	if (IsEmpty()) {
+		return 0;
+	}
+	//按顺序找到最后一个结点
+	while (tempptr!=NULL) {
+		tempptr = tempptr->next;
+		count++;
+	}		
+	return count+1;
+}
+
+//Destroy()
+template <typename T>
+inline void Queue<T>::QClear(void) {
+	//temp ref domain
+	QueueNode<T> * p;
+	//从头部开始删除
+	while (front != NULL) {
+		p = front;
+		front = front->next;
+		delete p;
+	}
 }
 
 //QEmpty()
-template<class T>
+template <typename T>
 inline int Queue<T>::QEmpty(void) const {
 	return count == 0;
 }
 
 //QFull()
-template<class T>
+template <typename T>
 inline int Queue<T>::QFull(void) const {
 	return return count == MaxQSize;
 }

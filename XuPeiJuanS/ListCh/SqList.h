@@ -10,7 +10,7 @@
 #pragma once
 #include "stdafx.h"
 
-template <class T> //模板类，实现泛型,T指的就是元素类型
+template <typename T> //模板类，实现泛型,T指的就是元素类型
 class SqList {
 	#pragma region Member field 成员字段
 private:
@@ -30,7 +30,7 @@ public:
 	#pragma endregion !_Member Methods Interface 成员方法接口声明ADT
 };
 
-template <class T>
+template <typename T>
 inline SqList<T>::SqList(int Max) {
 	//构造函数
 	//模板类，界定符必须要写SqList<T>::
@@ -39,7 +39,7 @@ inline SqList<T>::SqList(int Max) {
 	last = -1; //工作指针
 }
 
-template<class T>
+template <typename T>
 inline int SqList<T>::Locate(const T& x) const {
 	//查找表中元素x的位置，return index
 	//返回表中元素x的位置
@@ -53,7 +53,7 @@ inline int SqList<T>::Locate(const T& x) const {
 		return i;
 }
 
-template<class T>
+template <typename T>
 inline bool SqList<T>::Insert(int k, const T & x) {
 	//插入元素
 	//int k,order pos
@@ -72,7 +72,7 @@ inline bool SqList<T>::Insert(int k, const T & x) {
 	}
 }
 
-template<class T>
+template <typename T>
 inline bool SqList<T>::Delete(int k, T & x) {
 	//从表中删除位置k 处的元素 x,return bool
 	if (k<0 || k>last) //index illegal

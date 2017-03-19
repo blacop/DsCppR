@@ -11,7 +11,7 @@
 #include "Node.h"
 
 //链表类
-template <class T>
+template <typename T>
 class LinkList {
 	#pragma region Member Field	
 private:
@@ -23,7 +23,7 @@ public:
 	virtual ~LinkList() {}
 
 	//创建结点，构造链表,CreateLinkList,Malloc
-	template<class T>
+	template <typename T>
 	inline Node<T> * GetNode(const T& item, Node<T>* nextptr = NULL) {
 		//Node<T>* nextptr = NULL 表示如果没有传参，默认值为NULL
 		Node<T> * newNode;
@@ -38,7 +38,7 @@ public:
 	}//!_GetNode()//!_构造链表，创建结点
 
 	//遍历链表
-	template<class T>
+	template <typename T>
 	inline void printList(Node<T>* head) {
 		Node<T>* currptr = head;
 		count = 0;
@@ -53,13 +53,13 @@ public:
 	}//!_printList()
 
 	//头插法，构造链表//在头指针为head的链表中，插入一个data域为item的新结点作为该链表的表头结点
-	template<class T>
+	template <typename T>
 	inline void InsertFront(Node<T>* &head, T item) {
 		head = GetNode(item, head);
 	}
 
 	//尾插法//表尾插入结点表尾
-	template<class T>
+	template <typename T>
 	inline void InsertRear(Node<T>* &head, const T &item) {
 		Node<T>* currptr = head;
 		//若表为空，调表头插入函数

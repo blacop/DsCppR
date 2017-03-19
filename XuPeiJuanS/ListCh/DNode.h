@@ -9,7 +9,7 @@
 #pragma once
 #include "stdafx.h"
 //循环双向链表结点
-template <class T>
+template <typename T>
 class DNode {
 private:
 	DNode<T>* left; //ref domain
@@ -30,16 +30,16 @@ public:
 };//!_class DNode
 
 //construct function
-template<class T>
+template <typename T>
 inline DNode<T>::DNode(void) {}
 
 //construct function
-template<class T>
+template <typename T>
 inline DNode<T>::DNode(const T & item)
 	:data(item), left(this), right(this) {}
 
 //在当前结点(this)之后插入结点p
-template<class T>
+template <typename T>
 inline void DNode<T>::InsertRight(DNode<T>* p) {
 	//p is inserted node;
 	//change ptr 4 times;
@@ -50,7 +50,7 @@ inline void DNode<T>::InsertRight(DNode<T>* p) {
 }
 
 //Delete this DNode
-template<class T>
+template <typename T>
 inline DNode<T>* DNode<T>::DeleteNode(void) {	
 	DNode<T>* tempptr = this;
 	//core 2 ptr move;
