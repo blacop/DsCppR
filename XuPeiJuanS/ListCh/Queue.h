@@ -26,7 +26,7 @@ public:
 	//删除队首元素
 	T QDelete(void);
 	void ClearQueue(void);
-	//存取队首元素
+	//读取队首元素
 	T QFront(void) const;
 	//返回队列中元素个数
 	int QLength(void) const;
@@ -45,7 +45,7 @@ inline Queue<T>::Queue(void)
 //Insert()
 template<class T>
 inline void Queue<T>::QInsert(const T & item) {
-	if (count==MaxQSize) {
+	if (count == MaxQSize) {
 		cerr << "Queue overflow !" << endl;
 		exit(1);
 	}
@@ -53,3 +53,50 @@ inline void Queue<T>::QInsert(const T & item) {
 	QList[rear] = item;
 	rear = (rear + 1) % MaxQSize;
 }//!_Insert()
+
+//Delete()
+template<class T>
+inline T Queue<T>::QDelete(void) {
+	if (count == 0) {
+		cerr << "Deleting from an empty queue !" << endl;
+		exit(1);
+	}
+	T temp;
+	temp = QList[front];
+	count--;
+	front = (front + 1) % MaxQSize;
+	return temp;
+}
+
+//ClearQueue()
+template<class T>
+inline void Queue<T>::ClearQueue(void) {
+	rear = front;
+	count = 0;
+}
+
+//QFront(),读取队首元素
+template<class T>
+inline T Queue<T>::QFront(void) const {
+	return QList[front];
+}
+
+//QLength()
+template<class T>
+inline int Queue<T>::QLength(void) const {
+	return count;
+}
+
+//QEmpty()
+template<class T>
+inline int Queue<T>::QEmpty(void) const {
+	return count == 0;
+}
+
+//QFull()
+template<class T>
+inline int Queue<T>::QFull(void) const {
+	return return count == MaxQSize;
+}
+
+
