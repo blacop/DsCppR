@@ -28,9 +28,8 @@ public:
 		return front == NULL;
 	}
 	//清空队列
-	void QClear(void);
-	//!_class Queue
-};
+	void QClear(void);	
+};//!_class Queue
 
 //DeConstructor()
 template <typename T>
@@ -89,5 +88,31 @@ template <typename T>
 inline T Queue<T>::QFront(void) const {
 	if (IsEmpty()) exit(1);
 	return front->data;
+}
+
+//返回队列中元素个数
+template<typename T>
+inline int Queue<T>::QLength(void) const {
+	Queue<T>* tempptr = this.front;
+	int count = 0;
+	if (front == NULL) { //Queue is empty
+		return 0;
+	}
+	while (tempptr->next != NULL) { //find Queue's end node
+		tempptr = tempptr->next;
+		count++;
+	}
+	return count + 1;
+}
+
+//清空队列
+template<typename T>
+inline void Queue<T>::QClear(void) {
+	QueueNode<T> * p; //temp ref domain	
+	while (front != NULL) { //从头部开始删除
+		p = front;
+		front = front->next;
+		delete p;
+	}
 }
 

@@ -33,5 +33,5 @@ public:
 	//GetNext()，返回指向当前结点的后继结点的指针
 	Node<T>* NextNode(void) const {
 		return this.next;
-	}	
+	}
 };//!_class Node

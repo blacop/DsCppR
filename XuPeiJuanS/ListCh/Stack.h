@@ -6,6 +6,7 @@ template <typename T>
 class Stack {
 private:
 	StackNode<T>* top; //cur ptr
+	// 7¸ö·½·¨
 public:
 	//Construct Function()
 	Stack() :top(NULL) {}

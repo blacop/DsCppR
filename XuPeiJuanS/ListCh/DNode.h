@@ -14,6 +14,7 @@ class DNode {
 private:
 	DNode<T>* left; //ref domain
 	DNode<T>* right; //ref domain
+	//8¸ö·½·¨
 public:
 	T data; //data domain
 	DNode<T>* NextNodeLeft(void) const;
@@ -26,7 +27,6 @@ public:
 	void InsertLeft(DNode<T>* p);
 	void InsertRight(DNode<T>* p);
 	DNode<T>* DeleteNode(void);
-
 };//!_class DNode
 
 //construct function
@@ -51,7 +51,7 @@ inline void DNode<T>::InsertRight(DNode<T>* p) {
 
 //Delete this DNode
 template <typename T>
-inline DNode<T>* DNode<T>::DeleteNode(void) {	
+inline DNode<T>* DNode<T>::DeleteNode(void) {
 	DNode<T>* tempptr = this;
 	//core 2 ptr move;
 	this.left->right = this.right;
