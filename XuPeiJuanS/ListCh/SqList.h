@@ -31,7 +31,7 @@ public:
 };
 
 template <class T>
-SqList<T>::SqList(int Max) {
+inline SqList<T>::SqList(int Max) {
 	//构造函数
 	//模板类，界定符必须要写SqList<T>::
 	MaxSize = Max;
@@ -40,7 +40,7 @@ SqList<T>::SqList(int Max) {
 }
 
 template<class T>
-int SqList<T>::Locate(const T& x) const {
+inline int SqList<T>::Locate(const T& x) const {
 	//查找表中元素x的位置，return index
 	//返回表中元素x的位置
 	//const成员函数不能修改调用该函数的对象
@@ -54,7 +54,7 @@ int SqList<T>::Locate(const T& x) const {
 }
 
 template<class T>
-bool SqList<T>::Insert(int k, const T & x) {
+inline bool SqList<T>::Insert(int k, const T & x) {
 	//插入元素
 	//int k,order pos
 	//const T & x , data
@@ -73,7 +73,7 @@ bool SqList<T>::Insert(int k, const T & x) {
 }
 
 template<class T>
-bool SqList<T>::Delete(int k, T & x) {
+inline bool SqList<T>::Delete(int k, T & x) {
 	//从表中删除位置k 处的元素 x,return bool
 	if (k<0 || k>last) //index illegal
 		return 0;

@@ -24,6 +24,27 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SqList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Property.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoProperty.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CNode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DNode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
