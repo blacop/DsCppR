@@ -36,14 +36,14 @@ public:
 	T Pop();
 	T GetTop(void) const;
 	void MakeEmpty(void);
-	int IsEmpty(void) const;	
+	int IsEmpty(void) const;
 
 };//!_class //!_LinkStack
 
 //Push() 从栈顶压入一个元素
 template<class T>
 inline void Stack<T>::Push(const T & item) {
-	StackNode<T>* p = new Node<T>;
+	StackNode<T>* p = &(new StackNode<T>);
 	p->data = item; //赋值
 	p->next = top; //connect cur ptr
 	top = p; //cur ptr move ++
@@ -63,13 +63,7 @@ inline T Stack<T>::Pop() {
 	return RetValue;
 }//!_Pop()
 
-//MakeEmpty()
-template<class T>
-inline void Stack<T>::MakeEmpty(void) {
-	this.top = -1;
-}//!_MakeEmpty()
-
-//peek(),GetTop()
+ //peek(),GetTop()
 template<class T>
 inline T Stack<T>::GetTop(void) const {
 	if (IsEmpty()) { //empty stack
@@ -78,6 +72,14 @@ inline T Stack<T>::GetTop(void) const {
 	}
 	return top->data;
 }//!_peek(),GetTop()
+
+
+//MakeEmpty()
+template<class T>
+inline void Stack<T>::MakeEmpty(void) {
+	this.top = NULL;
+}//!_MakeEmpty()
+
 
 //IsEmpty()
 template<class T>

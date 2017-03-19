@@ -22,9 +22,24 @@ public:
 	Node<T>* NextNode(void) const;//返回指向当前结点的后继结点的指针
 	#pragma endregion !_Member Attribute
 
-	#pragma region Member Function Interface
+	#pragma region Member Function Interface 5个方法
 	Node(const T& item, Node<T> * ptrnext = NULL);//构造器
 	virtual ~Node() {}	//析构器
+
+	//创建结点，构造链表,CreateLinkList,Malloc
+	template<class T>
+	inline Node<T> * InitNode(const T& item, Node<T>* nextptr = NULL) {
+		//Node<T>* nextptr = NULL 表示如果没有传参，默认值为NULL
+		Node<T>* newNode;
+		newNode = new Node<T>(item, nextptr);
+		if (newNode == NULL) {
+			//cerr：输出到标准错误的ostream对象，常用于程序错误信息；
+			cerr << "Memory allocation failure !" << end;
+			//由于返回0代表程序正常退出, 返回1等其他数字通常代表异常终止。
+			exit(1);//错误号1
+		}
+		return newNode;
+	}//!_GetNode()//!_构造链表，创建结点
 
 	void InsertAfter(Node<T> *p);//在当前结点之后插入指针p所指结点	
 	Node<T> * DeleteAfter(void);//删除当前结点的后继结点
