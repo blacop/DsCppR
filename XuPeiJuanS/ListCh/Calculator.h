@@ -52,8 +52,14 @@ public:
 		s.Push(result);
 	}
 	//清空栈
-	void Clear();
+	void Clear() {
+		s.Clear();
+	}
 	//计算表达式的值
-	void Run();
-};
+	void Run() {
+		char op;
+		double operand;
+		cin >> op;
+	}
+};//!_class Calculator
 
