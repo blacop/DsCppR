@@ -38,18 +38,25 @@ public:
 		delete p; //free() p, else will crash memory
 		return RetValue;
 	}
-	//peek(),GetTop()
-	T GetTop(void) const {
+	//Peek(),GetTop()
+	T Peek() const {
 		if (IsEmpty()) { //empty stack
 			cerr << "Attempt to pop an empty stack!" << endl;
 			exit(1);
 		}
 		return top->data;
-	}
-	//MakeEmpty()
-	void MakeEmpty(void) {
-		this.top = NULL;
-	}//!_MakeEmpty()
+	}//!_Peek
+	//Clear()
+	void Clear(void) {		
+		//²»free()»áÄÚ´æÐ¹Â©
+		StackNode<T>* p; //temp ref domain		 
+		while (top != NULL) { //free()
+			p = top;
+			top = top->next;
+			delete p;
+		}
+		this.top = NULL; 
+	}//!_Clear()
 	 //IsEmpty()
 	int IsEmpty(void) const {
 		return top == NULL;

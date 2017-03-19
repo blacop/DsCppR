@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <string>
 #include <string.h>
+using namespace std;
 
 ////∫Í’πø™  Ù–‘
 //#define AutoProperty(ValueType, GetAccessor, SetAccessor, Variable)	private: ValueType Variable;\
