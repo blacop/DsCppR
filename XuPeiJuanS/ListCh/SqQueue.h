@@ -9,18 +9,19 @@
 #include "stdafx.h"
 #pragma once
 const int MaxQSize = 50;
-//链式队列的类定义
+//顺序队列的类定义
 template <class T>
-class Queue {
+class SqQueue {
 private:
-	T QList[MaxQSize];//存放队列元素的数组
+	//存放队列元素的数组
+	T QList[MaxQSize];
 	//rear => last+1 , 尾指针指向last+1
 	int front, rear, count;
 public:
 	//构造函数
-	Queue(void);
+	SqQueue(void);
 	//析构造函数
-	virtual ~Queue() {}
+	virtual ~SqQueue() {}
 	//向队尾插入元素
 	void QInsert(const T & item);
 	//删除队首元素
@@ -37,9 +38,9 @@ public:
 
 };//!_class Queue
 
-//Constructor
+  //Constructor
 template<class T>
-inline Queue<T>::Queue(void)
+inline SqQueue<T>::SqQueue(void)
 	:front(0), rear(0), count(0) {}
 
 //Insert()
@@ -54,7 +55,7 @@ inline void Queue<T>::QInsert(const T & item) {
 	rear = (rear + 1) % MaxQSize;
 }//!_Insert()
 
-//Delete()
+ //Delete()
 template<class T>
 inline T Queue<T>::QDelete(void) {
 	if (count == 0) {
