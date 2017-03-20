@@ -1,10 +1,15 @@
 #include "stdafx.h"
-//矩阵
+
 #pragma once
+//稀疏矩阵美的声明
 //三元组的结点类
 template<typename T>
 class Trituple {
 	friend class SparseMatrix;
+private:
+	int row, col;
+	T value;
+
 public:
 
 	Trituple() {}
