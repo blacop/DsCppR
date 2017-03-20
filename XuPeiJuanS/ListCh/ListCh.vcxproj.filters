@@ -66,6 +66,12 @@
     <ClInclude Include="Algo.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Trituple.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SparseMatrix.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

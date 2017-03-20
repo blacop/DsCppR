@@ -154,6 +154,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueNode.h" />
+    <ClInclude Include="SparseMatrix.h" />
     <ClInclude Include="SqList.h" />
     <ClInclude Include="SqQueue.h" />
     <ClInclude Include="SqStack.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="StackNode.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Trituple.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ListCh.cpp" />
