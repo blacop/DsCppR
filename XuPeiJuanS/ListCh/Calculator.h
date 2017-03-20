@@ -57,9 +57,21 @@ public:
 	}
 	//计算表达式的值
 	void Run() {
-		char op;
-		double operand;
-		cin >> op;
+		char op; //操作符
+		double operand; //操作数
+		cin >> op; //输入操作符
+		while (op != '=') {
+			switch (op) {
+				case'+':case'-':case'*':case'/':
+					Compute(op); break;	//运算
+				default:cin.putback(op); //非操作符，回流
+					cin >> operand; //入操作数
+					Enter(operand); break; //入栈操作数
+			}
+			cin >> op; //输入操作符
+		}
+		cout << s.Pop() << endl;//最后出栈
+		Clear();//清空栈
 	}
 };//!_class Calculator
 
