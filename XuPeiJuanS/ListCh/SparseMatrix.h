@@ -33,9 +33,9 @@ inline SparseMatrix<T> SparseMatrix<T>::Transpose() {
 	b.Count = this.Count;
 	if (Count > 0) {
 		int Bnumber = 0;
-		for (int k = 0; k < Cols; k++) { //Traverse Src Matrix's Cols
-			for (int i = 0; i < Count; i++) { // Src's count limit
-				if (this.smArray[Bnumber].col == k) {
+		for (int k = 0; k < this.Cols; k++) { //Traverse Src Matrix's Cols Field
+			for (int i = 0; i < this.Count; i++) { // Src's count limit this Cols
+				if (this.smArray[Bnumber].col == k) { //src[bIndex].col== src.Cols filed Trav limit, src[index].col value limt == Src's Field Cols' value limt ,promise Asc Order Append to rst.,保证原矩阵按顺序从col属性为0开始存入结果矩阵
 					b.smArray[Bnumber].row = k; //Rst Matrix obj.row = Src.col
 					b.smArray[Bnumber].col = this.smArray[i].row; //traverse copy :rst.col = src[i].row
 					b.smArray[Bnumber].value = this.smArray[i].value; //traverse copy: rst from src. 
