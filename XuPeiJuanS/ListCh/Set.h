@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #pragma once
+//10个枚举
 enum ErrorType { //枚举类型	
 	InvalidMember, //无效成员
 	ExpectRightBrace, //没有右括号
@@ -18,23 +19,34 @@ enum ErrorType { //枚举类型
 template<typename T>
 class Set {
 private:
+	//数据域 成员指针 数组指针，指向一维元素的首地址
+	unsigned short *member;
 	//集合中元素个数的最大值
 	int setrange;
 	//位数组的元素个数
 	int arraySize;
-	//成员指针 数组指针，指向一维元素的首地址
-	unsigned short *member;
 	//确定elt属于数组member中的哪个数组元素
 	int ArrayIndex(const T& elt) const;
+public: //9个方法
+	//构造函数，创建空整型集合
+	Set(int setrange);
+	//析构函数
+	virtual ~Set(void);
+	//定义"+"为两个集合的并集,操作符重载
+	Set<T> operator + (const Set<T>& x) const;
+	//插入元素elt
+	void Insert(const T& elt);
+	//删除元素elt
+	void Delete(const T& elt);
+	//判断elt是否在集合中
+	int IsMember(const T& elt);
 	//掩码，返回一个16位的短整数，其中除了elt所在的位值为1外，其余的位值为0.
 	unsigned short BitMask(const T& elt) const;
-
 	//位掩码转化器，进int value,出int
 	int ConvertBitMask(int val) {
 		int bitMask = 1 << val;
 		return bitMask;
 	}
-
 	//二进制转化器，进int,出StringBuilder
 	StringBuilder ConvertBits(int val) {
 		int bitMask = 1 << 31;
@@ -50,20 +62,6 @@ private:
 		}
 		return bitBuffer;
 	} //二进制转化器，进int,出string
-
-public:
-	//构造函数，创建空整型集合
-	Set(int setrange);
-	//析构函数
-	virtual ~Set(void);
-	//定义"+"为两个集合的并集,操作符重载
-	Set<T> operator + (const Set<T>& x) const;
-	//插入元素elt
-	void Insert(const T& elt);
-	//删除元素elt
-	void Delete(const T& elt);
-	//判断elt是否在集合中
-	int IsMember(const T& elt);
 };
 
 //确定elt属于数组member中的哪个数组元素,返回数组元素的order
@@ -113,6 +111,26 @@ inline Set<T> Set<T>::operator+(const Set<T>& x) const {
 		tmp.member[i] = member[i] | x.member[i];
 		return tmp;
 	}
+}
+
+//插入元素elt
+template<typename T>
+inline void Set<T>::Insert(const T & elt) {
+	//elt是否在0~setrange-1之间
+	if (int(elt) < 0 || int(elt) >= setrange)
+		Error(InvalidMemberRef);
+	//置elt所在位值为1
+	member[ArrayIndex(elt)] |= BitMask(elt);
+}
+
+//删除元素elt
+template<typename T>
+inline void Set<T>::Delete(const T & elt) {
+	//elt是否在0~setrange-1之间
+	if (int(elt) < 0 || int(elt) >= setrange)
+		Error(InvalidMemberRef);
+	//置elt所在位值为0
+	member[ArrayIndex(elt)] &= (!BitMask(elt));
 }
 
 //判断elt是否在集合中
