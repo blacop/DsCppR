@@ -14,18 +14,15 @@
 
 //#pragma once是一个比较常用的C/C++杂注，只要在头文件的最开始加入这条杂注，就能够保证头文件只被编译一次。
 #pragma once
-
 #include "targetver.h"
-
 #include <stdio.h>
 #include <tchar.h>
-
 #include <iostream>
 #include <stdlib.h>
 #include <string>
 #include <string.h>
-
-
+#include <math.h>
+#include <time.h>
 using namespace std;
 
 ////宏展开 属性

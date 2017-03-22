@@ -1,14 +1,7 @@
-//#pragma region Member Field
-//#pragma endregion !_Member Field
-//#pragma region Member Attribute
-//#pragma endregion !_Member Attribute
-//#pragma region Member Function Statement
-//#pragma endregion !_Member Function Statement
-//#pragma region Member Function Definition
-//#pragma endregion !_Member Function Definition
 #pragma once
 #include "stdafx.h"
 #include "Node.h"
+
 //¡¥±Ì¿‡
 template <typename T>
 class LinkList {

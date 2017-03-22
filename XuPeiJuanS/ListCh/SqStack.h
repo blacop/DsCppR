@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Stack.h"
+
 const int MaxStackSize = 50;
 //SqStack,À≥–Ú’ª
 template <typename T>

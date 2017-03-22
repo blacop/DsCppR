@@ -1,6 +1,6 @@
+#pragma once
 #include "stdafx.h"
 #include "Trituple.h"
-#pragma once
 
 template<typename T>
 class SparseMatrix {

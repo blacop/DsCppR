@@ -1,5 +1,5 @@
-#include "stdafx.h"
 #pragma once
+#include "stdafx.h"
 //自定义动态数组类
 template<typename T>
 class Array {

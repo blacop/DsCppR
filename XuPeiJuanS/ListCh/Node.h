@@ -1,5 +1,6 @@
-#include "stdafx.h"
 #pragma once
+#include "stdafx.h"
+
 //Ω·µ„¿‡
 template <typename T>
 class Node {

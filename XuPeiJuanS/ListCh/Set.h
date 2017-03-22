@@ -1,5 +1,6 @@
-#include "stdafx.h"
 #pragma once
+#include "stdafx.h"
+
 //10个枚举
 enum ErrorType { //枚举类型	
 	InvalidMember, //无效成员

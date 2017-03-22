@@ -1,6 +1,8 @@
-#include "Array.h"
-#include "stdafx.h"
 #pragma once
+#include "stdafx.h"
+#include "Array.h"
+
+template<typename T>
 class Algo {
 public:
 	Algo() {}

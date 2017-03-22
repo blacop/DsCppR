@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "Node.h"
 #pragma once
+#include "stdafx.h"
+
 //链式队列结点的类定义
 template <typename T>
 class QueueNode : public Node {

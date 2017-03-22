@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "QueueNode.h"
-#include "Node.h"
+
 const int MaxQSize = 50;
 //链式队列的类定义
 template <typename T>

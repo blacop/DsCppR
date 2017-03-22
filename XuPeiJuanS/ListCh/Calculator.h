@@ -1,7 +1,8 @@
+#pragma once
 #include "stdafx.h"
 #include "Stack.h"
 //方法的声明实现的 分离写法 容易 报错，IDE还找不到错误的地方
-#pragma once
+
 //表达式求值
 class Calculator {
 private:

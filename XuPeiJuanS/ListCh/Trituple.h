@@ -1,6 +1,6 @@
+#pragma once
 #include "stdafx.h"
 
-#pragma once
 //稀疏矩阵美的声明
 //三元组的结点类
 template<typename T>

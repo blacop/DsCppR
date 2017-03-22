@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+
 //SqList,顺序线性表
 template <typename T> //模板类，实现泛型,T指的就是元素类型
 class SqList {	

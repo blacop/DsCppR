@@ -1,6 +1,7 @@
+#pragma once
 #include "stdafx.h"
 #include "StackNode.h"
-#pragma once
+
 //LinkStack,链式栈的类定义
 template <typename T>
 class Stack {

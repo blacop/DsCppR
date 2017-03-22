@@ -1,5 +1,5 @@
-#include "stdafx.h"
 #pragma once
+#include "stdafx.h"
 //字符串类定义
 //模式（子串）匹配
 class String {
