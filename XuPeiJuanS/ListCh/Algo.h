@@ -2,12 +2,12 @@
 #include "stdafx.h"
 #include "Array.h"
 
-template<typename T>
-class Algo {
-public:
-	Algo() {}
-	virtual ~Algo() {}
-};
+//template<typename T>
+//class Algo {
+//public:
+//	Algo() {}
+//	virtual ~Algo() {}
+//};
 
 //求倍数,不写模板泛型就会报错《没有重载
 template<typename T>
