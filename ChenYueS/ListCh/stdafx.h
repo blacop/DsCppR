@@ -17,8 +17,15 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+
+using namespace std;
 
 #define ElementType int
 const int MAXSIZE = 50;
+
+#define OK 1
+#define ERROR 0
+
 
 // TODO:  在此处引用程序需要的其他头文件

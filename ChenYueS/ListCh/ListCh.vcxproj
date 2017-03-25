@@ -147,9 +147,16 @@
   <ItemGroup>
     <ClInclude Include="AlgoMath.h" />
     <ClInclude Include="GNode.h" />
+    <ClInclude Include="matrix.h" />
+    <ClInclude Include="MaxSubSequSum.h" />
     <ClInclude Include="NodeL.h" />
     <ClInclude Include="NodeSqGen.h" />
     <ClInclude Include="NodeSq.h" />
+    <ClInclude Include="QNodeL.h" />
+    <ClInclude Include="QNodeSq.h" />
+    <ClInclude Include="Recursion.h" />
+    <ClInclude Include="SNodeL.h" />
+    <ClInclude Include="SNodeSq.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

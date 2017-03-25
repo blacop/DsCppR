@@ -24,16 +24,16 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="IntroCh.h">
+    <ClInclude Include="SqBiTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SortCh.h">
+    <ClInclude Include="SqBiTreeC.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Recursion.h">
+    <ClInclude Include="BiTNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="IteratorAlgo.h">
+    <ClInclude Include="BiTNodeC.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,7 +41,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="IntroCh.cpp">
+    <ClCompile Include="TreeCh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

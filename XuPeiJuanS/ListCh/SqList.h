@@ -5,9 +5,9 @@
 template <typename T> //模板类，实现泛型,T指的就是元素类型
 class SqList {	
 private:	
-	T * data; //表元素数组， T * 泛型指针 //另一种写法 T[] data。	
+	T* data; //表元素数组， T * 泛型指针 //另一种写法 T[] data。	
 	int last;//工作指针	
-	int MaxSize; //最大元素个数	
+	int MaxSize; //最大元素个数
 public: //5个方法
 	SqList(int Max = 10);//构造函数,className();如果没有传入值，默认为10,这样写就不用写无参数构造器了
 	virtual ~SqList() { delete[] data; } //析构函数,~className(); //delete必须有 [] 运算符 才能释放整个data数组的内存空间

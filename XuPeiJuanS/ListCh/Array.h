@@ -103,6 +103,27 @@ public: //7种方法
 	//修改数组的大小
 	void Resize(int newSize);
 
+	//查找-----------分隔线--------------------- 
+	//在数组中找最小值
+	public static int FindMin(int[] arr) {
+		int min = arr[0];
+		for (int index = 0; index < arr.Length - 1; index++)
+			if (arr[index] < min)
+				min = arr[index];
+		return min;
+	} 
+	//在数组中找最大值
+	public static int FindMax(int[] arr) {
+		int max = arr[0];
+		for (int index = 0; index < arr.Length - 1; index++)
+			if (arr[index] > max)
+				max = arr[index];
+		return max;
+	} 
+	 /*上述两个函数的另外一种替换写法是返回最大值或最小值在数组内的位置，而不是返回实际的数值。*/
+
+
+
 };//!_class Array
 
 //malloc()

@@ -39,6 +39,27 @@
     <ClInclude Include="NodeSqGen.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SNodeSq.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SNodeL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QNodeSq.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QNodeL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MaxSubSequSum.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Recursion.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

@@ -6,10 +6,15 @@
 #pragma once
 
 #include "targetver.h"
-
 #include <stdio.h>
 #include <tchar.h>
-
-
+#include <stdlib.h>
+#include <io.h>
+#include <iostream>
+//#include <istream>
+//#include <ostream>
+#include <string.h>
+#include <string>
+using namespace std;
 
 // TODO:  在此处引用程序需要的其他头文件
