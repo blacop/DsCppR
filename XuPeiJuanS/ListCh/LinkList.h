@@ -74,6 +74,41 @@ public:
 			currptr->InsertAfter(newNode);
 		}
 	}//!_InsertRear()
+	//计算带表头结点的单链表head的长度
+	int Length()const {
+		Node<T>* p = head->next;
+		int count = 1;
+		while (p->next != NULL) {
+			p = p->next; count++;
+		}
+		return count;
+	}
+	//将一单链表head逆转，要有点循环链表的思维
+	void Inverse(Node<T>*& head) {
+		if (head == NULL) return;
+		Node<T>  *q = head, *p = head->next, *r = NULL; //1,2,end
+		while (p != NULL) {
+			q->next = r;	//逆转 1->end , head 连 end
+			r = q;			//指针++移 end=1 ,end 置1
+			q = p;			//指针++移 1=2,  1 置2
+			p = p->next;	//指针++移 2=3 , 2 置3
+		}
+		q->next = r; // head 连 end
+		head = q; //head = q
+	}
+	//交换p所指结点与其后继结点在链表中的位置
+	int Revers(Node<T>* head，Node<T>* p) {
+		if (p->next == NULL) return 0;
+		Node<T>* q = head;
+		Node<T>* r;
+		while (q->next != p)
+			q = q->next; //p的前驱
+		r = p->next; //p的后继
+		q->next = r; //1->3
+		p->next = r->next;  //2->4
+		r->next = p; //3->2
+		return 1;
+	}
 
 	#pragma endregion !_Member Function Definition
 };//class LinkList

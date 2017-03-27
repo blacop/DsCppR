@@ -1,0 +1,25 @@
+Status InitStack(LinkStack &S)
+
+/*  //构造一个空栈S 
+	//放*S和放&S 都表示S会被改变
+	//实际调用的话必须参数是*s	
+	//传入指针的引用S，
+	//只有C++中才有&引用传递
+	//C语言中没有&引用传递，则用*指针传递
+	//总结：
+	//传入的指针仅仅是一个拷贝，方法不会改变原指针的地址、值，但是可能会改变原指针所指向内存块的数据。
+	//总结：
+	//参数*指针传递 方法 传入的是 a、b变量地址的拷贝，也叫传值；
+    //参数&引用传递 方法 传入的是变量a、b，而不是拷贝（地址相同），又叫传引用。
+	//参数*,改值变量带*,参数&，变量不带&
+	*/
+	
+Status InitStack(LinkStack &S){
+		S->top = (LinkStackPtr)malloc(sizeof(StackNode));//开内存
+	if (!S->top){ //top 是空指针
+		return ERROR;
+	}
+	S->top = NULL;//头插法
+	S->count = 0;
+	return OK;
+}

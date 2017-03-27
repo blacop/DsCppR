@@ -27,13 +27,10 @@
     <ClInclude Include="SqBiTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SqBiTreeC.h">
+    <ClInclude Include="BinTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="BiTNode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="BiTNodeC.h">
+    <ClInclude Include="BinTreeNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

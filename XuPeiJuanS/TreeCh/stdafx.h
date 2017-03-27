@@ -17,13 +17,17 @@
 #include "targetver.h"
 #include <stdio.h>
 #include <tchar.h>
-
-#include <iostream>
 #include <stdlib.h>
+#include <io.h>
+#include <iostream>
 #include <string>
 #include <string.h>
-
 using namespace std;
+typedef int Status;
+#define TRUE 1
+#define FALSE 0
+#define OK 1
+#define ERROR 0
 
 ////∫Í’πø™  Ù–‘
 //#define AutoProperty(ValueType, GetAccessor, SetAccessor, Variable)	private: ValueType Variable;\

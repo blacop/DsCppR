@@ -14,20 +14,24 @@
 
 //#pragma once是一个比较常用的C/C++杂注，只要在头文件的最开始加入这条杂注，就能够保证头文件只被编译一次。
 #pragma once
-
 #include "targetver.h"
-
 #include <stdio.h>
 #include <tchar.h>
-
-#include <string.h>
-#include <string>
-
+#include <stdlib.h>
 #include <io.h>
 #include <iostream>
+#include <string.h>
+#include <string>
 using namespace std;
+typedef int Status;
+#define TRUE 1
+#define FALSE 0
+#define OK 1
+#define ERROR 0
 
-
-
+////宏展开 属性
+//#define AutoProperty(ValueType, GetAccessor, SetAccessor, Variable)	private: ValueType Variable;\
+//GetAccessor: ValueType get##Variable() { return Variable; }\
+//SetAccessor: void set##Variable(ValueType newValue) { Variable = newValue; }
 
 // TODO:  在此处引用程序需要的其他头文件
