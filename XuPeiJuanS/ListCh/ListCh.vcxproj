@@ -156,6 +156,7 @@
     <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueNode.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SeqList.h" />
     <ClInclude Include="Set.h" />
     <ClInclude Include="SparseMatrix.h" />
     <ClInclude Include="SqList.h" />

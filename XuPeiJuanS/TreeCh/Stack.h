@@ -6,7 +6,7 @@
 template <typename T>
 class Stack {
 private:
-	StackNode<T>* top; //cur ptr
+	StackNode<T>* top; //cur ptr，指向当前栈顶，栈顶作为未使用结点
 	// 7个方法
 public:
 	//Construct Function()
@@ -22,9 +22,9 @@ public:
 	}
 	//Push() 从栈顶压入一个元素
 	void Push(const T & item) {
-		StackNode<T> * p = new StackNode<T>;
+		StackNode<T> * p = new StackNode<T>; //开辟新结点
 		p->data = item; //赋值
-		p->next = top; //connect cur ptr
+		p->next = top; //connect cur ptr，连接到栈顶结点
 		top = p; //cur ptr move ++
 	}
 	//Pop() 从栈顶弹出一个元素

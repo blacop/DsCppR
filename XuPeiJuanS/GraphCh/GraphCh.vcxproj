@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4DC8C1C7-B365-47EA-86E6-68C833F7D9B5}</ProjectGuid>
+    <ProjectGuid>{41ED3C95-6249-432D-A7B3-B9E1D9D13B8F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>TreeCh</RootNamespace>
+    <RootNamespace>GraphCh</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -145,31 +145,19 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinTree.h" />
-    <ClInclude Include="BinTreeNode.h" />
-    <ClInclude Include="bithrnode.h" />
-    <ClInclude Include="bithrtree.h" />
-    <ClInclude Include="BitNode.h" />
-    <ClInclude Include="Clue_Binary_Tree.h" />
-    <ClInclude Include="Clue_Node.h" />
-    <ClInclude Include="HuffmanTreeCode.h" />
-    <ClInclude Include="HuffmanTree.h" />
-    <ClInclude Include="Queue.h" />
-    <ClInclude Include="QueueNode.h" />
-    <ClInclude Include="Stack.h" />
-    <ClInclude Include="StackNode.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="SeqList.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="ThrBiNode.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GraphCh.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TreeCh.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

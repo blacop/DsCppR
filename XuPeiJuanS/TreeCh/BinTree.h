@@ -5,6 +5,7 @@
 //二叉树类BinTree的声明
 template <typename T, typename TElemType>
 class BinTree {
+	//3个域
 private:
 	//指向根结点
 	BinTreeNode<T>* root;
@@ -12,8 +13,10 @@ private:
 	T stop;
 	//从结点begin开始搜索，返回结点current的父结点
 	BinTreeNode<T>* father(BinTreeNode<T>* begin, BinTreeNode<T>* current);
-	//10个方法
+	
 public:
+	//Constructor()
+	BinTree() :root(new BinTreeNode()) {}
 	//Constructor(),构造函数--在声明一棵二叉树时进行初始化，生成一棵空树
 	BinTree() :root(NULL) {}
 	//Constructor(),//输入stop时，终止结点的输入
@@ -24,14 +27,39 @@ public:
 	int Insert(BinTreeNode<T>*& current, const T& item);
 	//从结点current开始，搜索数据值为item的结点，返回编号
 	int Find(BinTreeNode<T>*& current, const T& item) const;
-	//删除结点current及其左右子树
-	void DelSubtree(BinTreeNode<T>* current);
-	//先根遍历并输出以结点t为根的树
-	void Preorder(BinTreeNode<T>* t, ostrem& out)const;
-	//中根遍历并输出以结点t为根的树
-	void Inorder(BinTreeNode<T>* t, ostrem& out)const;
-	//后根遍历并输出以结点t为根的树
-	void Postorder(BinTreeNode<T>* t, ostrem& out)const;
+	//删除结点current及其左右子树,后序算法
+	void DelSubtree(BinTreeNode<T>* current) {
+		BinTreeNode<T>* t = current; //tempPtr
+		if (t != NULL) {
+			Postorder(t->left, out);	//enter left subtree		
+			Postorder(t->right, out); //enter right subtree
+			delete t;		//delete() root node
+		}
+	}
+	//先根遍历并输出以结点t为根的树，递归算法
+	void Preorder(BinTreeNode<T>* t, ostrem & out)const {
+		if (t != NULL) {
+			cout << t->data;		//visit() root node
+			Preorder(t->left, out);	//enter left subtree		
+			Preorder(t->right, out); //enter right subtree
+		}
+	}
+	//中根遍历并输出以结点t为根的树，const表示这个是访问函数，不能修改结点，递归算法
+	void Inorder(BinTreeNode<T>* t, ostrem & out)const {
+		if (t != NULL) {
+			Inorder(t->left, out);	//enter left subtree
+			cout << t->data;		//visit() root node
+			Inorder(t->right, out); //enter right subtree
+		}
+	}
+	//后根遍历并输出以结点t为根的树，递归算法
+	void Postorder(BinTreeNode<T>* t, ostrem & out)const {
+		if (t != NULL) {
+			Postorder(t->left, out);	//enter left subtree		
+			Postorder(t->right, out); //enter right subtree
+			cout << t->data;		//visit() root node
+		}
+	}
 	//判断二叉树是否为空
 	virtual int IsEmpty() {
 		return root == NULL ? 1 : 0;
@@ -75,6 +103,7 @@ public:
 			return ERROR;
 		} else return true;
 	}
+
 	//先根遍历并输出以结点t为根的树,非递归算法，自建栈
 	bool PreOrderTrverse(BinTreeNode<T>* T, bool(*Visit)(TElemType)) {
 		BinTreeNode<T>* p = T; //临时指针
@@ -124,9 +153,47 @@ public:
 		}//while
 		return true;
 	}
-	//层次遍历二叉树
-	bool LevelOrderTraverse(BinTreeNode<T>* T, bool(*Visit)(TElemType));
 
+	//层次遍历二叉树 ，先根遍历
+	bool LevelOrderTraverse(BinTreeNode<T>* T, bool(*Visit)(TElemType)) {
+		Queue<TElemType> Q = new Queue<TElemType>(); //新建队列
+		BinTreeNode<TElemType>* p; //出队元素
+		if (T != nullptr)  Q.EnQueue(Q, T); //入队 root
+		while (!Q.IsEmpty()) {
+			Q.DeQueue(Q, p); //出队 root
+			Visit(p->data); //visit() root
+			if (p->left != nullptr) Q.EnQueue(Q, p->left);
+			if (p->right != nullptr) Q.EnQueue(Q, p->right);
+		}
+	}
+	//判断是否为完全二叉树,层次遍历
+	bool IsFullTree(BinTreeNode<T>* T) {
+		Queue<TElemType> Q = new Queue<TElemType>(); //新建队列
+		BinTreeNode<TElemType>* p; //出队元素
+		int tag = 1;
+		if (T != nullptr) Q.EnQueue(Q, T); //入队 root
+		while (!Q.IsEmpty() && tag != 0) {
+			Q.DeQueue(Q, p); //出队 root
+			//Visit(p->data); //visit() root
+			if (p->left != nullptr) {
+				Q.EnQueue(Q, p->left);
+				if (p->right != nullptr) 
+					Q.EnQueue(Q, p->right);
+				else tag = 0; //左孩子存在 //右孩子不存在
+			} else { //左孩子不存在 //右孩子存在
+				tag = 0;
+				if (p->right) 
+					return false; 
+			}
+		}//!_WHILE
+		 //如果左右孩都不子存在，则伺候每一个结点都不应该存在孩子结点，否则必然不是完全二叉树
+		while (!!Q.IsEmpty()) { 
+			Q.DeQueue(Q, p);
+			if ((p->left) || (p->right)) 
+				return false;
+		}
+		return true;
+	}
 	//访问结点Func
 	typedef bool(*VisitFunc)(TElemType) {
 		PrintElement(e);
@@ -144,34 +211,10 @@ public:
 		cout << e;	   //printf(e);
 		return true;
 	}
+	//后序遍历二叉树，二叉树的结点有五个域
+	bool PostMarkTaverse(BinTreeNode<T>* T) {
+
+	}
 };//!_class BinTree
 
-  //先根遍历并输出以结点t为根的树，递归算法
-template<typename T>
-inline void BinTree<T>::Preorder(BinTreeNode<T>* t, ostrem & out) const {
-	if (t != NULL) {
-		cout << t->data;		//visit() root node
-		Preorder(t->left, out);	//enter left subtree		
-		Preorder(t->right, out); //enter right subtree
-	}
-}
 
-//中根遍历并输出以结点t为根的树，const表示这个是访问函数，不能修改结点，递归算法
-template<typename T>
-inline void BinTree<T>::Inorder(BinTreeNode<T>* t, ostrem & out) const {
-	if (t != NULL) {
-		Inorder(t->left, out);	//enter left subtree
-		cout << t->data;		//visit() root node
-		Inorder(t->right, out); //enter right subtree
-	}
-}
-
-//后根遍历并输出以结点t为根的树，递归算法
-template<typename T>
-inline void BinTree<T>::Postorder(BinTreeNode<T>* t, ostrem & out) const {
-	if (t != NULL) {
-		Postorder(t->left, out);	//enter left subtree		
-		Postorder(t->right, out); //enter right subtree
-		cout << t->data;		//visit() root node
-	}
-}

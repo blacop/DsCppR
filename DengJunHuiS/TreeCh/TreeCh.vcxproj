@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4DC8C1C7-B365-47EA-86E6-68C833F7D9B5}</ProjectGuid>
+    <ProjectGuid>{0D09FDD8-ED3F-4674-AB6F-B9A61B9C7A0B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>TreeCh</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -145,22 +145,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinTree.h" />
-    <ClInclude Include="BinTreeNode.h" />
-    <ClInclude Include="bithrnode.h" />
-    <ClInclude Include="bithrtree.h" />
-    <ClInclude Include="BitNode.h" />
-    <ClInclude Include="Clue_Binary_Tree.h" />
-    <ClInclude Include="Clue_Node.h" />
-    <ClInclude Include="HuffmanTreeCode.h" />
-    <ClInclude Include="HuffmanTree.h" />
-    <ClInclude Include="Queue.h" />
-    <ClInclude Include="QueueNode.h" />
-    <ClInclude Include="Stack.h" />
-    <ClInclude Include="StackNode.h" />
+    <ClInclude Include="BinNode.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="ThrBiNode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

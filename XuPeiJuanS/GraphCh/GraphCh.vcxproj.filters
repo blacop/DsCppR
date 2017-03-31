@@ -24,46 +24,10 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="BinTree.h">
+    <ClInclude Include="Graph.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Stack.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="StackNode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="BinTreeNode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Clue_Node.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Queue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="QueueNode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Clue_Binary_Tree.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="bithrnode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="bithrtree.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="BitNode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ThrBiNode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="HuffmanTree.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="HuffmanTreeCode.h">
+    <ClInclude Include="SeqList.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,7 +35,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="TreeCh.cpp">
+    <ClCompile Include="GraphCh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
