@@ -21,7 +21,7 @@ public:
 	SparseMatrix<T> Add(SparseMatrix<T> b);
 	//求矩阵的乘积
 	SparseMatrix<T> Multiply(SparseMatrix<T> b);
-
+	
 };//!_class SparseMatrix
 
   //求转置矩阵

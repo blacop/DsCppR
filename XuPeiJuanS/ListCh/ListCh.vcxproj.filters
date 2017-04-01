@@ -84,9 +84,6 @@
     <ClInclude Include="TestArray.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SqList.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="SeqList.h">
       <Filter>头文件</Filter>
     </ClInclude>

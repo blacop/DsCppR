@@ -159,7 +159,6 @@
     <ClInclude Include="SeqList.h" />
     <ClInclude Include="Set.h" />
     <ClInclude Include="SparseMatrix.h" />
-    <ClInclude Include="SqList.h" />
     <ClInclude Include="SqQueue.h" />
     <ClInclude Include="SqStack.h" />
     <ClInclude Include="Stack.h" />

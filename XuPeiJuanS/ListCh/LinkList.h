@@ -97,7 +97,7 @@ public:
 		head = q; //head = q
 	}
 	//交换p所指结点与其后继结点在链表中的位置
-	int Revers(Node<T>* head，Node<T>* p) {
+	int Reverse(Node<T>* head，Node<T>* p) {
 		if (p->next == NULL) return 0;
 		Node<T>* q = head;
 		Node<T>* r;

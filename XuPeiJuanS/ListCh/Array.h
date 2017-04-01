@@ -111,7 +111,7 @@ public: //7种方法
 			if (arr[index] < min)
 				min = arr[index];
 		return min;
-	} 
+	}
 	//在数组中找最大值
 	public static int FindMax(int[] arr) {
 		int max = arr[0];
@@ -119,8 +119,8 @@ public: //7种方法
 			if (arr[index] > max)
 				max = arr[index];
 		return max;
-	} 
-	 /*上述两个函数的另外一种替换写法是返回最大值或最小值在数组内的位置，而不是返回实际的数值。*/
+	}
+	/*上述两个函数的另外一种替换写法是返回最大值或最小值在数组内的位置，而不是返回实际的数值。*/
 
 
 

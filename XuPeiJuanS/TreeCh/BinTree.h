@@ -13,7 +13,7 @@ private:
 	T stop;
 	//从结点begin开始搜索，返回结点current的父结点
 	BinTreeNode<T>* father(BinTreeNode<T>* begin, BinTreeNode<T>* current);
-	
+
 public:
 	//Constructor()
 	BinTree() :root(new BinTreeNode()) {}
@@ -177,19 +177,19 @@ public:
 			//Visit(p->data); //visit() root
 			if (p->left != nullptr) {
 				Q.EnQueue(Q, p->left);
-				if (p->right != nullptr) 
+				if (p->right != nullptr)
 					Q.EnQueue(Q, p->right);
 				else tag = 0; //左孩子存在 //右孩子不存在
 			} else { //左孩子不存在 //右孩子存在
 				tag = 0;
-				if (p->right) 
-					return false; 
+				if (p->right)
+					return false;
 			}
 		}//!_WHILE
 		 //如果左右孩都不子存在，则伺候每一个结点都不应该存在孩子结点，否则必然不是完全二叉树
-		while (!!Q.IsEmpty()) { 
+		while (!!Q.IsEmpty()) {
 			Q.DeQueue(Q, p);
-			if ((p->left) || (p->right)) 
+			if ((p->left) || (p->right))
 				return false;
 		}
 		return true;

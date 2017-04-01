@@ -3,8 +3,8 @@
 
 //SeqList,顺序线性表
 template <typename T> //模板类，实现泛型,T指的就是元素类型
-class SeqList {	
-private:	
+class SeqList {
+private:
 	T* data; //表元素数组， T * 泛型指针 //另一种写法 T[] data。	
 	int last;//工作指针	
 	int MaxSize; //最大元素个数
