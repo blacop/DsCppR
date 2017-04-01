@@ -10,15 +10,13 @@
 //};
 
 //2 用邻接表存储的Graph类
-//Graph类的声明
 //顶点表中结点的结构
 template<typename T>
 struct Vertex {
 	//友元类
 	friend class Graph<T>;
-	//顶点的名称
-	T VerName;
-	//边链表的头指针
-	Edge* adjacent;
+
+	T VerName; //顶点的名称 	data domain ,store node value
+	Edge<T>* adjacent; //边链表的头指针 ref domain
 };
 
