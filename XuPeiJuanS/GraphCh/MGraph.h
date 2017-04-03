@@ -81,7 +81,8 @@ public:
 		return true;
 	}//!_bool CreateDG()
 };//!_class MGraph()
-//-----分隔线-----
+
+//----------分隔线----------
 
 //2 用邻接表存储的Graph类 声明
 //和弧相关的信息成员结构//弧边权值
@@ -132,7 +133,9 @@ public:
 		return true;
 	}//!_bool CreateN()
 };//!_bool CreateN(MGraph<T> &G)
+
 //--------------------
+
 //有向图的十字链表存储形式说明：
 //边表结点
 typedef struct ArcBox {
