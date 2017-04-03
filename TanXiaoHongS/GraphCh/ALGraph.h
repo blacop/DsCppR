@@ -2,16 +2,6 @@
 #include "stdafx.h"
 //2 用邻接表存储的Graph类 声明
 
-//class ALGraph {
-//public:
-//
-//	ALGraph() {}
-//
-//	virtual ~ALGraph() {}
-//};
-
-//----------分隔线----------
-
 //顶点向量数组，可以用SeqList
 typedef struct VertexType {
 	//SeqList<int> VertexType;
@@ -52,7 +42,8 @@ typedef struct VNode {
 	VertexType data;  //顶点信息//顶点向量数组，可以用SeqList，data domain
 	ArcNode* firstarc; //指向下一个邻接点 ref domain
 }VNode, AdjList[MAX_VERTRIX_NUM];//顶点信息链表数组
-								 //用邻接表存储的Graph类 声明
+
+//用邻接表存储的Graph类 声明
 template<typename T>
 class ALGraph {
 public:
@@ -61,7 +52,7 @@ public:
 	int arcnum; //边数
 	int kind; //弧的类型
 
-			  //采用邻接矩阵表示法构造有向图,构造方法
+	 //采用邻接矩阵表示法构造有向图,构造方法
 	bool CreateN(MGraph<T> &G) {
 		//初始化邻接表 头结点表, 所有元素手动输入，顶点数，边数，结点信息（权值）
 		scanf(&G.vexnum, &G.arcnum, &IncInfor);//顶点数和边数
@@ -84,5 +75,56 @@ public:
 		}
 		return true;
 	}//!_bool CreateN()
+	 //class ALGraph {
+	 //public:
+	 //
+	 //	ALGraph() {}
+	 //
+	 //	virtual ~ALGraph() {}
+	 //};
+
+	 //深度优先遍历
+	bool visited[MAX_VERTRIX_NUM]; //访问状态表
+	bool(*VisitFunc)(int v);  //委托：访问结点	
+							  //深度优先遍历
+	void DFSTraverse(ALGraph G, bool(*Visit(int v))) { //深度优先遍历 Tan
+		VisitFunc = Visit; //委托：访问结点;委托赋值 访问函数
+		for (int v = 0; v < G.vexnum; ++v)  //初始化 访问状态表
+			visited[v] = false;
+		for (int v = 0; v < G.vexnum; ++v) {
+			if (!visited[v]) DFS(G, v);
+		}
+	}
+	void DFS(ALGraph G, int v) { //深度优先遍历算法 重载 递归调用
+		visited[v] = true; //访问状态表更新
+		VisitFunc(v); //委托调用
+					  //找到第一个邻接点，w为true,找下一个邻接点
+		for (int w = FirstAdjVex(G，v); w; w = NextAdjVex(G, v, w))
+			if (!visited[w]) DFS(G, w); //深度优先遍历算法 重载 递归调用
+	}
+
+	//广度优先遍历 Tan 层次遍历的推广
+	void BFSTravese(ALGraph G, bool(*Visit(int v))) {
+		for (int v = 0; v < G.vexnum; ++v)  //初始化 访问状态表
+			visited[v] = false;
+		InitQueue(Q); //new 队列
+		for (int v = 0; v < G.vexnum; ++v)
+			if (!visited[v]) { //检查到未访问，递归调用
+				visited[v] = true; //访问状态表更新
+				Visit(v); //访问结点
+				EnQueue(Q, u); //入队
+				while (!QueueEmpty(Q)) { //队列 非空
+					DeQueue(Q, u); //出队
+					//找到第一个邻接点，w为true,找下一个邻接点
+					for (int w = FirstAdjVex(G，v); w; w = NextAdjVex(G, v, w))
+						if (!visited[w]) {
+							visited[w] = true; //访问状态表更新
+							Visit(w); //访问结点
+							EnQueue(Q, w); //入队
+						}//!_if
+				}//!_while
+			}//!_if
+	}//!_BFSTravese
+
 };//!_bool CreateN(MGraph<T> &G)
 

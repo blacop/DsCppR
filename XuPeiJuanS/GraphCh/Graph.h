@@ -24,14 +24,14 @@ public:
 //2b 用邻接表存储的Graph类
 //边表结点的结构
 template<typename T>
-class Edge {	
+class Edge {
 	friend class Graph<T>;//友元类
 public:
 	int VerAdj; //此邻接顶点序号	data domain 1
 	int cost;	//此边的权值	data domain 2	
 	Edge<T>* link; //指向下一个边结点的指针 ref domain
 	//构造函数
-	Edge(int d,int c) : VerAdj(d), cost(c), link(NULL) {}
+	Edge(int d, int c) : VerAdj(d), cost(c), link(NULL) {}
 };
 
 //Prim算法 PrimClosedge边权值和顶点表结点的结构
@@ -72,7 +72,7 @@ public:
 		head = new Vertex<T>[MaxGraphSize];
 
 		cin >> numGraphsize; //输入顶点个数		
-		for (int i = 0; i < numGraphsize; i++) { 
+		for (int i = 0; i < numGraphsize; i++) {
 			cin >> name; //依次输入顶点，插入图中
 			InsertVertex(name); //将顶点插入图中
 		}
@@ -202,7 +202,7 @@ public:
 	}//!_TopoOrder
 
 	//普里姆算法
-	Prim() {	
+	Prim() {
 		/*int * closeedge= new int[length];
 		for (int i = 0; i < length; i++) {
 		closeedge[i] = 0;
@@ -216,7 +216,7 @@ public:
 		//Hashtable closeedge = new Hashtable();
 		//closeedge.Add(Lowcost, int * LowcostArray = new int[length]);
 		//closeedge.Add(vex, int * vexArray= new int[length]);		
-		
+
 		PrimClosedge<T>  closedge = new PrimClosedge<T>(length);
 		for (int i = 0; i < length; i++) {
 			closedge[i].Lowcost = Edge[0][i]; //i点与各点的边的权值
@@ -225,8 +225,7 @@ public:
 		closeedge[0].vex = -1;
 		int count = 0;
 	}
-
-	
+		
 
 };//!_class Graph
 

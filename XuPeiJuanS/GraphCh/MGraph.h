@@ -184,3 +184,4 @@ public:
 		return true;
 	}//!_bool CreateOLG()
 };//!_class OLGraph
+
