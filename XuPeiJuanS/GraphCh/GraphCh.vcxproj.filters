@@ -30,12 +30,6 @@
     <ClInclude Include="MGraph.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Edge.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="GraphMatrix.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -46,6 +40,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="QueueNode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StackNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

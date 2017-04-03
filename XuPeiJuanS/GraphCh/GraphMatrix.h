@@ -9,15 +9,11 @@ const int MaxGraphSize = 25;
 template <typename T>
 class GraphMatrix {
 	//4个字段
-private:
-	//顶点表
-	SeqList<T> VertexList;
-	//邻接矩阵
-	int edgeMatrix[MaxGraphSize][MaxGraphSize];
-	//当前顶点数
-	int graphsize;
-	//当前边数
-	int CurrentEdges;
+private:	
+	SeqList<T> VertexList; //顶点表	
+	int edgeMatrix[MaxGraphSize][MaxGraphSize]; //邻接矩阵	
+	int graphsize; //当前顶点数	
+	int CurrentEdges; //当前边数
 	//2个私有方法
 
 	//检查顶点vertex是否己在顶点表L中

@@ -1,8 +1,8 @@
 #pragma once
 #include "stdafx.h"
-#include "Vertex.h"
-#include "Edge.h"
 #include "Queue.h"
+#include "Stack.h"
+#include "SqStack.h"
 //class Graph {
 //public:
 //
@@ -14,10 +14,9 @@
 //2a  用邻接表存储的Graph类
 //顶点表结点的结构
 template<typename T>
-struct Vertex {
-	//友元类
-	friend class Graph<T>;
-
+class Vertex {
+	friend class Graph<T>;//友元类
+public:
 	T VerName; //顶点的名称 	data domain ,store node value
 	Edge* adjacent; //边链表的头指针 ref domain
 };
@@ -25,18 +24,25 @@ struct Vertex {
 //2b 用邻接表存储的Graph类
 //边表结点的结构
 template<typename T>
-struct Edge {
-	//友元类
-	friend class Graph<T>;
-
+class Edge {	
+	friend class Graph<T>;//友元类
+public:
 	int VerAdj; //此邻接顶点序号	data domain 1
-	int cost;	//此边的权值	data domain 2
-	Edge* link; //指向下一个边结点的指针 ref domain
-
-	////构造函数
-	//Edge<T>() {}
+	int cost;	//此边的权值	data domain 2	
+	Edge<T>* link; //指向下一个边结点的指针 ref domain
 	//构造函数
-	Edge<T>(int d, int c) : VerAdj(d), cost(c), link(NULL) {}
+	Edge(int d,int c) : VerAdj(d), cost(c), link(NULL) {}
+};
+
+//Prim算法 PrimClosedge边权值和顶点表结点的结构
+template<typename T>
+class PrimClosedge {
+	friend class Graph<T>;//友元类
+public:
+	int* Lowcost; //权值ArrayList ,data domain 1 //i点与各点的边的权值
+	int* vex;	//顶点ArrayList ,data domain 2	
+	//构造函数
+	PrimClosedge(int _length) : Lowcost(new int[_length]), vex(new int[_length]) {}
 };
 
 //2 用邻接表存储的Graph类
@@ -66,17 +72,15 @@ public:
 		head = new Vertex<T>[MaxGraphSize];
 
 		cin >> numGraphsize; //输入顶点个数		
-		for (int i = 0; i < numGraphsize; i++) { //依次输入顶点，插入图中
-			cin >> name;
-			InsertVertex(name);
+		for (int i = 0; i < numGraphsize; i++) { 
+			cin >> name; //依次输入顶点，插入图中
+			InsertVertex(name); //将顶点插入图中
 		}
 
 		cin >> edgeCount; //输入边的个数
-		for (int i = 0; i < edgeCount; i++) { //依次输入各边
-			//输入边的始点，终点和权值
-			cin >> from >> to >> weight;
-			//将边插入图中
-			InsertEdge(from, to, weight);
+		for (int i = 0; i < edgeCount; i++) { //依次输入各边			
+			cin >> from >> to >> weight; //输入边的始点，终点和权值			
+			InsertEdge(from, to, weight); //将边插入图中
 		}
 	}//!_Graph()
 	virtual ~Graph() {} //析构函数
@@ -123,7 +127,7 @@ public:
 	//深度优先遍历的算法有点类似于迷宫求解
 	//从起点出发，访问它的一个不曾访问定的邻接顶点，直至没有未访问的结点，退回上一个被访问的顶点，
 	//看它是否还有未访问的邻接顶点，若有，则有，则访问该邻接结点，且从它出发，递归调用此算法，当所有顶点均被访问，则过程终止
-	DepthFirstSearch() {		
+	DepthFirstSearch() {
 		int *visited = new int[graphsize]; //为辅助数组申请空间 int visited[]		
 		for (int k = 0; k < graphsize; k++) //数组初始化
 			visited[k] = 0;
@@ -145,15 +149,84 @@ public:
 		}
 	}
 	//广度优先遍历,迭代算法,队列辅助
-	BFS(const int v){		
-		int *visited = new int[graphsize]; //为辅助数组申请空间 int visited[]		
+	BFS(const int v) {
+		int *visited = new int[graphsize];  //为辅助数组申请空间 int visited[]		
 		for (int k = 0; k < graphsize; k++) //数组初始化
 			visited[k] = 0;
 		cout << GetName(v) << " "; //输出序号v顶点的名字值，可以换成其他操作语句
-		visited[v] = 1; //visited置1
-		Queue<int> q; //队列辅助
-		q.EnQueue(v); //入队
+		visited[v] = 1; //visited已访问置1
+		Queue<int> q; //声明辅助队列
+		q.EnQueue(v); //入队v
+		while (!q.IsEmpty()) { //队列非空
+			v = q.DeQueue();  //出队v
+			int w = GetFirstNeighbor(v); //得到顶点v的下一个顶点w
+			while (w != -1) { //合法	,如果不存在，返回-1,则递归栈出栈
+				if (!visited[w]) { //非0为true，未访问
+					cout << GetName(w) << " "; //输出序号v顶点的名字值，可以换成其他操作语句
+					visited[w] = 1; //visited已访问置1
+					q.EnQueue(w); //入队 顶点v的下一个顶点w
+				}
+				//else 上一句不成立，表示w已访问	
+				w = GetNextNeighbor(v, w); //则找到v相对于w的下一个邻接点
+			}//!_while
+		}//!_while
+		delete[] visited; //释放辅助数组
+	}//!_BFS
+
+	//拓扑排序算法
+	TopoOrder() {
+		int* count = new int[length]; //new 入度表 顺序栈 array 
+		int top = -1; //空栈
+		for (int i = 0; i < length; i++) //初始化入度表顺序栈
+			if (count[i] == 0) {  //找到入度为0的顶点 然后入栈
+				count[i] = top; //把入度为0的顶点压入栈中//置value为top值，入栈,此value可表示栈中下一个入度为0的元素的index下标
+				top = i;  //top 置为i count,top++
+			}
+		for (int i = 0; i < length; i++)
+			if (top == -1) { //没有入度为0的顶点，则有环路
+				cout << "There is a cycle in network !" << endl; return;
+			} else { //没有环路
+				int j = top; //出栈top到j，top存元素序号
+				top = count[top]; //top--，取出游标，count[top]存下一个游标
+				cout << j << endl; //输出 出栈的顶点元素值，可替换操作语句 
+				Edge<T>* p = head[j].Adjacent; //得到j的下一个邻接点的引用
+				while (p != NULL) { //非空
+					int k = p->VerAdj; //得到邻接点的序号
+					if (--count[k] == 0) { //消掉出边,就是执行此序号的每个邻接点的入度-1，if为0
+						count[k] = top; //入栈 静态链表栈 置入游标 游标实现法
+						top = k; //top++，cursor switch,游标跳转，游标置为当前元素
+					}
+					p = p->link; //ptr ++ 下一个链接域
+				}
+			}//!_for (int i = 0; i < length; i++) 
+	}//!_TopoOrder
+
+	//普里姆算法
+	Prim() {	
+		/*int * closeedge= new int[length];
+		for (int i = 0; i < length; i++) {
+		closeedge[i] = 0;
+		}*/
+
+		//java的Hashtable写法
+		//Hashtable ht = new Hashtable();
+		//ht.Add(key, value);// key,value可以是任何类型
+
+		////java的Hashtable写法
+		//Hashtable closeedge = new Hashtable();
+		//closeedge.Add(Lowcost, int * LowcostArray = new int[length]);
+		//closeedge.Add(vex, int * vexArray= new int[length]);		
+		
+		PrimClosedge<T>  closedge = new PrimClosedge<T>(length);
+		for (int i = 0; i < length; i++) {
+			closedge[i].Lowcost = Edge[0][i]; //i点与各点的边的权值
+			closedge[i].vex = 0;
+		}
+		closeedge[0].vex = -1;
+		int count = 0;
 	}
+
+	
 
 };//!_class Graph
 
