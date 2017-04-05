@@ -21,7 +21,8 @@ typedef enum { DG, DN, AG, AN } GraphKind;//图的类型
 template <typename T, typename VRType, typename InfoType>
 class ArcCell {
 public:
-	VRType adj; // 图：有边连接为1,无边连接为0 ，可以用int
+	VRType adj; //顶点关系类型
+	// 图：有边连接为1,无边连接为0 ，可以用int
 				//网：有边权值，无边无穷大
 	InfoType* info;//顶点表 //指向该弧相关信息指针 ，可以用顶点信息数组type[] *
 };
@@ -91,8 +92,8 @@ public:
 		VisitFunc = Visit; //委托：访问结点;委托赋值 访问函数
 		for (int v = 0; v < G.vexnum; ++v)  //初始化 访问状态表
 			visited[v] = false;
-		for (int v = 0; v < G.vexnum; ++v) {
-			if (!visited[v]) DFS(G, v);
+		for (int v = 0; v < G.vexnum; ++v) { //遍历 从第一个到最后一个邻接点
+			if (!visited[v]) DFS(G, v);//深度优先遍历算法 重载 递归调用
 		}
 	}
 	void DFS(ALGraph G, int v) { //深度优先遍历算法 重载 递归调用
@@ -125,6 +126,8 @@ public:
 				}//!_while
 			}//!_if
 	}//!_BFSTravese
+
+
 
 };//!_bool CreateN(MGraph<T> &G)
 

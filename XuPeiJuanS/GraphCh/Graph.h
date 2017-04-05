@@ -34,17 +34,6 @@ public:
 	Edge(int d, int c) : VerAdj(d), cost(c), link(NULL) {}
 };
 
-//Prim算法 PrimClosedge边权值和顶点表结点的结构
-template<typename T>
-class PrimClosedge {
-	friend class Graph<T>;//友元类
-public:
-	int* Lowcost; //权值ArrayList ,data domain 1 //i点与各点的边的权值
-	int* vex;	//顶点ArrayList ,data domain 2	
-	//构造函数
-	PrimClosedge(int _length) : Lowcost(new int[_length]), vex(new int[_length]) {}
-};
-
 //2 用邻接表存储的Graph类
 //Graph类的声明
 template<typename T>
@@ -173,14 +162,19 @@ public:
 		delete[] visited; //释放辅助数组
 	}//!_BFS
 
-	//拓扑排序算法
+	//拓扑排序算法,定义和前置条件：
+	//定义：将有向图中的顶点以线性方式进行排序。即对于任何连接自顶点u到顶点v的有向边uv，在最后的排序结果中，顶点u总是在顶点v的前面。
+
+	//	如果这个概念还略显抽象的话，那么不妨考虑一个非常非常经典的例子——选课。我想任何看过数据结构相关书籍的同学都知道它吧。假设我非常想学习一门机器学习的课程，但是在修这么课程之前，我们必须要学习一些基础课程，比如计算机科学概论，C语言程序设计，数据结构，算法等等。那么这个制定选修课程顺序的过程，实际上就是一个拓扑排序的过程，每门课程相当于有向图中的一个顶点，而连接顶点之间的有向边就是课程学习的先后关系。只不过这个过程不是那么复杂，从而很自然的在我们的大脑中完成了。将这个过程以算法的形式描述出来的结果，就是拓扑排序。
+
+	//	那么是不是所有的有向图都能够被拓扑排序呢？显然不是。继续考虑上面的例子，如果告诉你在选修计算机科学概论这门课之前需要你先学习机器学习，你是不是会被弄糊涂？在这种情况下，就无法进行拓扑排序，因为它中间存在互相依赖的关系，从而无法确定谁先谁后。在有向图中，这种情况被描述为存在环路。因此，一个有向图能被拓扑排序的充要条件就是它是一个有向无环图(DAG：Directed Acyclic Graph)。
 	TopoOrder() {
-		int* count = new int[length]; //new 入度表 顺序栈 array 
+		int* count = new int[length]; //开辟 入度表 静态链表栈 array 
 		int top = -1; //空栈
 		for (int i = 0; i < length; i++) //初始化入度表顺序栈
-			if (count[i] == 0) {  //找到入度为0的顶点 然后入栈
+			if (count[i] == 0) {  //找到入度为0的顶点 然后入栈 静态链表栈
 				count[i] = top; //把入度为0的顶点压入栈中//置value为top值，入栈,此value可表示栈中下一个入度为0的元素的index下标
-				top = i;  //top 置为i count,top++
+				top = i;  //top 置为i count,top++ ，top指针作数据域index，int* 存ref domain
 			}
 		for (int i = 0; i < length; i++)
 			if (top == -1) { //没有入度为0的顶点，则有环路
@@ -189,34 +183,31 @@ public:
 				int j = top; //出栈top到j，top存元素序号
 				top = count[top]; //top--，取出游标，count[top]存下一个游标
 				cout << j << endl; //输出 出栈的顶点元素值，可替换操作语句 
-				Edge<T>* p = head[j].Adjacent; //得到j的下一个邻接点的引用
-				while (p != NULL) { //非空
+				Edge<T>* p = head[j].Adjacent; //得到顶点表.[j]的下一个邻接点的引用
+				while (p != NULL) { //非空，深度遍历
 					int k = p->VerAdj; //得到邻接点的序号
-					if (--count[k] == 0) { //消掉出边,就是执行此序号的每个邻接点的入度-1，if为0
+					if (--count[k] == 0) { //消掉此邻接点的所有出边,就是执行此序号的每个邻接点的入度-1，if消掉出边后入度为0
 						count[k] = top; //入栈 静态链表栈 置入游标 游标实现法
 						top = k; //top++，cursor switch,游标跳转，游标置为当前元素
 					}
-					p = p->link; //ptr ++ 下一个链接域
+					p = p->link; //ptr ++ 下一个链接域,深度遍历
 				}
 			}//!_for (int i = 0; i < length; i++) 
 	}//!_TopoOrder
 
+	 //Prim算法 PrimClosedge边权值和顶点表结点的结构
+	template<typename T>
+	class PrimClosedge {
+		friend class Graph<T>;//友元类
+	public:
+		int* vex;	//顶点ArrayList ,data domain 1
+		int* Lowcost; //权值ArrayList ,data domain 2 //i点与各点的边的权值		
+					  //构造函数
+		PrimClosedge(int _length) : Lowcost(new int[_length]), vex(new int[_length]) {}
+	};
+
 	//普里姆算法
 	Prim() {
-		/*int * closeedge= new int[length];
-		for (int i = 0; i < length; i++) {
-		closeedge[i] = 0;
-		}*/
-
-		//java的Hashtable写法
-		//Hashtable ht = new Hashtable();
-		//ht.Add(key, value);// key,value可以是任何类型
-
-		////java的Hashtable写法
-		//Hashtable closeedge = new Hashtable();
-		//closeedge.Add(Lowcost, int * LowcostArray = new int[length]);
-		//closeedge.Add(vex, int * vexArray= new int[length]);		
-
 		PrimClosedge<T>  closedge = new PrimClosedge<T>(length);
 		for (int i = 0; i < length; i++) {
 			closedge[i].Lowcost = Edge[0][i]; //i点与各点的边的权值
