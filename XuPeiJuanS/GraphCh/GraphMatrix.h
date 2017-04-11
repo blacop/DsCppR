@@ -206,8 +206,7 @@ public:
 
 	//Prim算法 PrimClosedge边权值和顶点表结点的结构，辅助数组,表示此顶点到各顶点的权值
 	template<typename T>
-	class PrimClosedge {
-		//friend class Graph<T>;//友元类
+	class PrimClosedge { //上面全部终点 辅助权值数组
 	public:
 		int Lowcost; //权值ArrayList ,data domain 2 //i点与各点的边的权值	
 		int vex;	//顶点ArrayList ,data domain 1，order index，静态链表的ref domain
@@ -223,16 +222,14 @@ public:
 	//普里姆算法
 	#define INT_MAX       2147483647    /* maximum (signed) int value */	
 	#define length 6 //顶点数量
-   //利用普里姆算法从顶点v0出发求出用邻接矩阵edge表示的图的最小支撑树,最小支撑树的边集存于数组T中
+   //利用普里姆算法从顶点v0出发求出用邻接矩阵edge表示的图的最小支撑树,最小支撑树的边集存于数组T中。n^2
 	Prim() {
-		//初始化 辅助数组 patched
-		PrimClosedge<T>* closedge = new PrimClosedge<T>[length];
-		//Edge权值矩阵的值由外面传入
-		AdjMatrixEdge** Edge = new AdjMatrixEdge[length][length];
-		TEdge _TArray = new TEdge[length];
+		PrimClosedge<T>* closedge = new PrimClosedge<T>[length]; //初始化 上面全部终点 辅助数组 patched
+		AdjMatrixEdge** AdjMEdge = new AdjMatrixEdge[length][length]; //AdjMEdge权值矩阵的值由 外面传入
+		TEdge MinTreeEdge = new TEdge[length];  //Prim算法 存放最小生成树边 的集合
 		//初始化 辅助数组,表示此顶点到各顶点的权值
 		for (int i = 0; i < length; i++) {
-			closedge[i].Lowcost = Edge[0][i]; //i点与各点的边的权值 从赋值 用邻接矩阵存储的边表结点的结构
+			closedge[i].Lowcost = AdjMEdge[0][i]; //i点与各点的边的权值 从赋值 用邻接矩阵存储的边表结点的结构
 			closedge[i].vex = 0; //order index，静态链表的ref domain
 		}
 		//v0初始化
@@ -242,23 +239,25 @@ public:
 			int min = INT_MAX; //max是c++的最大整数,instance of min Lowcost value
 			int v = 0; //order link ref
 			for (int j = 0; j < length; j++) {
-				//找到第一条边
-				if (closedge[j].vex != -1 && closedge[j].Lowcost < min) {
-					v = j; //order link ref
-					min = closedge[j].Lowcost; //switch min Lowcost value
+				if (closedge[j].vex != -1 &&
+					closedge[j].Lowcost < min) { //找到 权值最小的 边，存入min
+					v = j; //order link ref，下标送给v
+					min = closedge[j].Lowcost; //switch min Lowcost value //修改最小值
 				}
-				if (v != 0) { //没找到
-					_TArray[count].head = v; //存放起点的名字
-					_TArray[count].tail = closedge[v].vex; //存放终点的名字
-					_TArray[count].cost = closedge[v].Lowcost; //存放边的权值
-					count++;
-					closedge[v].Lowcost = 0;
-					closedge[v].vex = -1;
-					//
+
+				if (v != 0) { //有值。存入权值最小的边到MinTreeEdge集合。加入MST最小生成树
+					MinTreeEdge[count].head = v; //存放起点的名字
+					MinTreeEdge[count].tail = closedge[v].vex; //存放终点的名字
+					MinTreeEdge[count].cost = closedge[v].Lowcost; //存放边的权值
+					count++; //计数器++
+					closedge[v].Lowcost = 0; //清理，标识已free此终点
+					closedge[v].vex = -1; //标识已加入TEdge集合，加入MST最小生成树
+
 					for (int j = 0; j < length; j++)
-						if (closedge[j].vex != -1 && Edge[v][j] < closedge[j].Lowcost) {
-							closedge[v].Lowcost = Edge[v][j];
-							closedge[j].vex = v;
+						if (closedge[j].vex != -1 &&
+							AdjMEdge[v][j] < closedge[j].Lowcost) { //v是在前面的上一个找到的最小生成树的终点 //邻接矩阵[v][j]的值小于临时权值数组的值，上一个终点v到j与上面全部终点到j进行权值的比较
+							closedge[j].Lowcost = AdjMEdge[v][j]; //switch min Lowcost value,权值矩阵[v][j]的值替换修改辅助数组
+							closedge[j].vex = v; //order link ref,vex记录边的起点vex order name，j记录终点
 						}
 				}
 			}

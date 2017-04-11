@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "Queue.h"
 #include "Stack.h"
-#include "SqStack.h"
+#include "SeqList.h"
 //class Graph {
 //public:
 //
@@ -11,8 +11,7 @@
 //	virtual ~Graph() {}
 //};
 
-//2a  用邻接表存储的Graph类
-//顶点表结点的结构
+//用邻接表存储的Graph类 顶点表结点的结构
 template<typename T>
 class Vertex {
 	friend class Graph<T>;//友元类
@@ -21,8 +20,7 @@ public:
 	Edge* adjacent; //边链表的头指针 ref domain
 };
 
-//2b 用邻接表存储的Graph类
-//边表结点的结构
+//用邻接表存储的Graph类 边表结点的结构
 template<typename T>
 class Edge {
 	friend class Graph<T>;//友元类
@@ -169,13 +167,14 @@ public:
 
 	//	那么是不是所有的有向图都能够被拓扑排序呢？显然不是。继续考虑上面的例子，如果告诉你在选修计算机科学概论这门课之前需要你先学习机器学习，你是不是会被弄糊涂？在这种情况下，就无法进行拓扑排序，因为它中间存在互相依赖的关系，从而无法确定谁先谁后。在有向图中，这种情况被描述为存在环路。因此，一个有向图能被拓扑排序的充要条件就是它是一个有向无环图(DAG：Directed Acyclic Graph)。
 	TopoOrder() {
-		int* count = new int[length]; //开辟 入度表 静态链表栈 array 
+		int* count = new int[length]; //开辟 结点入度数组 静态链表栈 array 
 		int top = -1; //空栈
 		for (int i = 0; i < length; i++) //初始化入度表顺序栈
 			if (count[i] == 0) {  //找到入度为0的顶点 然后入栈 静态链表栈
 				count[i] = top; //把入度为0的顶点压入栈中//置value为top值，入栈,此value可表示栈中下一个入度为0的元素的index下标
 				top = i;  //top 置为i count,top++ ，top指针作数据域index，int* 存ref domain
 			}
+		Vertex<T>* head = new Vertex<T>[length];//new 顶点表数组
 		for (int i = 0; i < length; i++)
 			if (top == -1) { //没有入度为0的顶点，则有环路
 				cout << "There is a cycle in network !" << endl; return;
@@ -217,6 +216,21 @@ public:
 		int count = 0;
 	}
 		
+	//最短路径
+	//正权最短路径问题
+	//正权最短路径算法思想
+	//Dijkstra算法
+	//初始时（S为初始顶点），Ds=0且i!=S,有Di=infinity。D为已加入顶点的集合。
+	//1.在未访问顶点中选择Dv最小的顶点v,访问v，令S[v]=1. S为已找到状态数组
+	//2.依次考察v的邻接顶点w,若Dv+weight(<v,w>)<Dw,
+	//则改变Dw的值,使Dw=Dv+weight(<v, w>).
+	//3.重复1 2 ，直至所有顶点被访问
+	
+	/*dist距离
+	path路径*/
+
+	int a;
+	int *p = new a；
 
 };//!_class Graph
 
